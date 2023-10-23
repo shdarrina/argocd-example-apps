@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: solr-operator
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: solr-operator
+  source:
+    chart: solr-operator
+    repoURL: https://solr.apache.org/charts
+    targetRevision: 0.7.1
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
